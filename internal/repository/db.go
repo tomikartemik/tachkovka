@@ -22,7 +22,6 @@ func ConnectDB() (*gorm.DB, error) {
 	}
 
 	err = db.AutoMigrate(
-		model.User{},
 		model.Record{},
 	)
 
