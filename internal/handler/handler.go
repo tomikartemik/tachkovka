@@ -37,5 +37,9 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		record.GET("", h.GetRecordsByTabelNumber)
 	}
 
+	table := router.Group("/table")
+	{
+		table.GET("", h.GetTableByName)
+	}
 	return router
 }

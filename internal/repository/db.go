@@ -23,6 +23,12 @@ func ConnectDB() (*gorm.DB, error) {
 
 	err = db.AutoMigrate(
 		model.Record{},
+		model.Version{},
+		model.DumpTruck{},
+		model.Excavator{},
+		model.TypeOfWork{},
+		model.WorkPlace{},
+		model.DownTime{},
 	)
 
 	if err != nil {

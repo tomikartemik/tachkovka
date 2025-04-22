@@ -7,6 +7,7 @@ import (
 
 type Service struct {
 	Record
+	Tables
 }
 
 func NewService(repos *repository.Repository) *Service {
@@ -19,4 +20,8 @@ type Record interface {
 	CreateRecord(record model.Record) error
 	GetAllRecords() ([]model.Record, error)
 	GetRecordsByTabelNumber(tabelNumber int) ([]model.Record, error)
+}
+
+type Tables interface {
+	GetTable(name string) (*model.Table, error)
 }
