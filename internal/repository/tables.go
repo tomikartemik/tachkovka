@@ -19,12 +19,15 @@ func (r *TablesRepository) GetTableVersion() ([]model.Version, error) {
 	return versions, err
 }
 
+func (r *TablesRepository) GetVersions() ([]model.Version, error) {
+	versions := []model.Version{}
+	err := r.db.Find(&versions).Error
+	return versions, err
+}
+
 func (r *TablesRepository) GetTables(name string) ([]model.Table, error) {
 	tables := []model.Table{}
 	switch name {
-	case "version":
-		err := r.db.Model(&model.Version{}).Find(&tables).Error
-		return tables, err
 	case "excavator":
 		err := r.db.Model(&model.Excavator{}).Find(&tables).Error
 		return tables, err
