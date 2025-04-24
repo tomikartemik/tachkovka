@@ -30,41 +30,40 @@ func (r *TablesRepository) GetVersions() ([]model.Version, error) {
 func (r *TablesRepository) GetTables(name string) ([]model.Table, error) {
 	tables := []model.Table{}
 
-	// Создаем карту соответствий имен таблиц моделям
 	modelMap := map[string]interface{}{
-		"version":      &model.Version{},
-		"excavator":    &model.Excavator{},
-		"dump_truck":   &model.DumpTruck{},
-		"down_time":    &model.DownTime{},
-		"type_of_work": &model.TypeOfWork{},
-		"work_place":   &model.WorkPlace{},
+		"version":      model.Version{},
+		"excavator":    model.Excavator{},
+		"dump_truck":   model.DumpTruck{},
+		"down_time":    model.DownTime{},
+		"type_of_work": model.TypeOfWork{},
+		"work_place":   model.WorkPlace{},
 	}
 
-	// Приводим имя к нижнему регистру для унификации
-	name = strings.ToLower(name)
-
-	// Получаем модель из карты
-	modelInstance, ok := modelMap[name]
+	modelInstance, ok := modelMap[strings.ToLower(name)]
 	if !ok {
 		return tables, nil
 	}
 
-	// Используем рефлексию для создания слайса нужного типа
+	// Создаем слайс нужного типа через рефлексию
 	sliceType := reflect.SliceOf(reflect.TypeOf(modelInstance))
 	slice := reflect.New(sliceType).Interface()
 
-	// Выполняем запрос
 	err := r.db.Model(modelInstance).Find(slice).Error
 	if err != nil {
 		return nil, err
 	}
 
-	// Конвертируем результат в []model.Table
+	// Конвертируем результаты
 	result := reflect.ValueOf(slice).Elem()
 	for i := 0; i < result.Len(); i++ {
-		item := result.Index(i).Interface()
-		id := reflect.ValueOf(item).FieldByName("ID").Int()
-		name := reflect.ValueOf(item).FieldByName("Name").String()
+		item := result.Index(i)
+		// Если item является указателем, получаем значение
+		if item.Kind() == reflect.Ptr {
+			item = item.Elem()
+		}
+
+		id := item.FieldByName("ID").Int()
+		name := item.FieldByName("Name").String()
 		tables = append(tables, model.Table{
 			ID:   int(id),
 			Name: name,
