@@ -24,5 +24,5 @@ type Record interface {
 }
 
 type Tables interface {
-	GetTable(name string) (*model.Table, error)
+	GetTable(name string) ([]model.Table, error)
 }

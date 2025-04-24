@@ -17,6 +17,6 @@ func (s *TablesService) GetVersions() ([]model.Version, error) {
 	return s.repo.GetVersions()
 }
 
-func (s *TablesService) GetTable(name string) (*model.Table, error) {
+func (s *TablesService) GetTable(name string) ([]model.Table, error) {
 	return s.repo.GetTables(name)
 }
