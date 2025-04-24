@@ -20,3 +20,7 @@ func (s *TablesService) GetVersions() ([]model.Version, error) {
 func (s *TablesService) GetTable(name string) ([]model.Table, error) {
 	return s.repo.GetTables(name)
 }
+
+func (s *TablesService) GetVersionsTable() ([]model.Version, error) {
+	return s.repo.GetVersionsTable()
+}

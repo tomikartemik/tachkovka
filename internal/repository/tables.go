@@ -73,3 +73,9 @@ func (r *TablesRepository) GetTables(name string) ([]model.Table, error) {
 
 	return tables, nil
 }
+
+func (r *TablesRepository) GetVersionsTable() ([]model.Version, error) {
+	versions := []model.Version{}
+	err := r.db.Find(&versions).Error
+	return versions, err
+}

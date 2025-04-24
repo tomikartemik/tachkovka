@@ -40,6 +40,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	table := router.Group("/table")
 	{
 		table.GET("", h.GetTableByName)
+		table.GET("/version", h.GetVersionsTable)
 	}
 	return router
 }

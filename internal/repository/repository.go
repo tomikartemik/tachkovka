@@ -26,4 +26,5 @@ type Record interface {
 type Tables interface {
 	GetVersions() ([]model.Version, error)
 	GetTables(name string) ([]model.Table, error)
+	GetVersionsTable() ([]model.Version, error)
 }
