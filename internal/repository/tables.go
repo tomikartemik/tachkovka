@@ -36,6 +36,7 @@ func (r *TablesRepository) GetTables(name string) ([]model.Table, error) {
 		"dump_truck":   model.DumpTruck{},
 		"type_of_work": model.TypeOfWork{},
 		"work_place":   model.WorkPlace{},
+		"eto":          model.Eto{},
 	}
 
 	modelInstance, ok := modelMap[strings.ToLower(name)]
