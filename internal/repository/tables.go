@@ -34,7 +34,6 @@ func (r *TablesRepository) GetTables(name string) ([]model.Table, error) {
 		"version":      model.Version{},
 		"excavator":    model.Excavator{},
 		"dump_truck":   model.DumpTruck{},
-		"down_time":    model.DownTime{},
 		"type_of_work": model.TypeOfWork{},
 		"work_place":   model.WorkPlace{},
 	}

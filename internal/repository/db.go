@@ -28,7 +28,7 @@ func ConnectDB() (*gorm.DB, error) {
 		model.Excavator{},
 		model.TypeOfWork{},
 		model.WorkPlace{},
-		model.DownTime{},
+		model.BreakdownClassification{},
 	)
 
 	if err != nil {
