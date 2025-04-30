@@ -8,12 +8,14 @@ import (
 type Repository struct {
 	Record
 	Tables
+	BreakdownClassification
 }
 
 func NewRepository(db *gorm.DB) *Repository {
 	return &Repository{
-		Record: NewRecordRepository(db),
-		Tables: NewTablesRepository(db),
+		Record:                  NewRecordRepository(db),
+		Tables:                  NewTablesRepository(db),
+		BreakdownClassification: NewBreakdownClassification(db),
 	}
 }
 
@@ -27,4 +29,8 @@ type Tables interface {
 	GetVersions() ([]model.Version, error)
 	GetTables(name string) ([]model.Table, error)
 	GetVersionsTable() ([]model.Version, error)
+}
+
+type BreakdownClassification interface {
+	GetClassifications() ([]model.BreakdownClassification, error)
 }

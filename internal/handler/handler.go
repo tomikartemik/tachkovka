@@ -41,6 +41,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	{
 		table.GET("", h.GetTableByName)
 		table.GET("/version", h.GetVersionsTable)
+		table.GET("/classification", h.GetClassification)
 	}
 	return router
 }
