@@ -31,12 +31,13 @@ func (r *TablesRepository) GetTables(name string) ([]model.Table, error) {
 	tables := []model.Table{}
 
 	modelMap := map[string]interface{}{
-		"version":      model.Version{},
-		"excavator":    model.Excavator{},
-		"dump_truck":   model.DumpTruck{},
-		"type_of_work": model.TypeOfWork{},
-		"work_place":   model.WorkPlace{},
-		"eto":          model.Eto{},
+		"version":        model.Version{},
+		"excavator":      model.Excavator{},
+		"dump_truck":     model.DumpTruck{},
+		"type_of_work":   model.TypeOfWork{},
+		"work_place":     model.WorkPlace{},
+		"eto_excavator":  model.EtoExcavator{},
+		"eto_dump_truck": model.EtoDumpTruck{},
 	}
 
 	modelInstance, ok := modelMap[strings.ToLower(name)]

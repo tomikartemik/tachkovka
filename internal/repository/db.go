@@ -28,7 +28,8 @@ func ConnectDB() (*gorm.DB, error) {
 		model.Excavator{},
 		model.TypeOfWork{},
 		model.WorkPlace{},
-		model.Eto{},
+		model.EtoExcavator{},
+		model.EtoDumpTruck{},
 		model.BreakdownClassification{},
 	)
 
